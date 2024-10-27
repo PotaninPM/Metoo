@@ -1,4 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Metoo</string>
     <string name="main">Main</string>
+    <string name="map_bottom">Map</string>
+    <string name="rating_bottom">Rating</string>
+    <string name="profile">Profile</string>
+    <string name="events_bottom">Events</string>
 </resources>

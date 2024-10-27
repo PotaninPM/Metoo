@@ -2,4 +2,8 @@
 <resources>
     <string name="app_name">Metoo</string>
     <string name="main">Главная</string>
+    <string name="map_bottom">Карта</string>
+    <string name="rating_bottom">Рейтинг</string>
+    <string name="profile">Профиль</string>
+    <string name="events_bottom">События</string>
 </resources>

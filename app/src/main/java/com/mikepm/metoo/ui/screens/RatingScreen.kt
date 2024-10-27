@@ -44,7 +44,7 @@ data class LeaderboardItem(
     val position: Int,
     val name: String,
     val points: Int,
-    val imageUrl: Int // Replace with the actual image resource
+    val imageUrl: Int
 )
 
 @Composable

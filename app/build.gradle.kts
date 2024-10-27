@@ -50,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.maps.compose)
+
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)

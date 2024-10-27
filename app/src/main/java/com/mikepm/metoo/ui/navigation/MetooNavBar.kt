@@ -22,6 +22,7 @@ fun MetooNavBar(
 
         destinations.forEach { destination ->
             val isSelected = currentDestination?.hierarchy?.any { it.route == destination.route } == true
+
             NavigationBarItem(
                 selected = isSelected, 
                 onClick = {
@@ -35,7 +36,7 @@ fun MetooNavBar(
                 },
                 icon = {
                     Icon(
-                        imageVector = if(isSelected) destination.selectedIcon else destination.unselectedIcon,
+                        imageVector = if (isSelected) destination.selectedIcon else destination.unselectedIcon,
                         contentDescription = stringResource(id = destination.labelRes)
                     )
                 },
