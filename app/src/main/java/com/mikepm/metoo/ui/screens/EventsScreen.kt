@@ -13,32 +13,34 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.DateRange
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.Button
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SearchBar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mikepm.metoo.core.EventModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EventsScreen() {
     Column(
@@ -66,7 +68,8 @@ fun EventsList() {
             eventCategory = "Спорт",
             eventDate = "14 December, 2021",
             eventTime = "Tuesday, 4:00PM - 9:00PM",
-            eventLocation = "Gala Convention Center"
+            eventLocation = "Gala Convention Center",
+            regPeopleId = listOf(1, 2)
         ),
         EventModel(
             creatorUserName = "MikePotanin",
@@ -74,7 +77,8 @@ fun EventsList() {
             eventCategory = "Спорт",
             eventDate = "14 December, 2021",
             eventTime = "Tuesday, 4:00PM - 9:00PM",
-            eventLocation = "Gala Convention Center"
+            eventLocation = "Gala Convention Center",
+            regPeopleId = listOf(1, 2)
         )
     )
 
@@ -97,9 +101,12 @@ fun EventsList() {
 fun SearchEventBar() {
     SearchBar(
         modifier = Modifier
-            .padding(vertical = 10.dp),
-        query = "1",
-        onQueryChange = {},
+            .fillMaxWidth()
+            .padding(vertical = 5.dp),
+        query = "",
+        onQueryChange = {
+
+        },
         onSearch = {},
         active = false,
         onActiveChange = {},
@@ -122,6 +129,10 @@ fun SearchEventBar() {
 
 @Composable
 fun TopBar() {
+    val newMessages by rememberSaveable {
+        mutableStateOf(10)
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth(),
@@ -142,13 +153,29 @@ fun TopBar() {
             Text(text = "Russia, Moscow", fontWeight = FontWeight.SemiBold)
         }
 
-        Icon(
-            imageVector = Icons.Default.Notifications,
-            contentDescription = null,
+        BadgedBox(
             modifier = Modifier
-                .size(30.dp)
-                .align(Alignment.CenterVertically)
-        )
+                .align(Alignment.CenterVertically),
+            badge = {
+                if(newMessages != 0) {
+                    Badge(
+                        modifier = Modifier
+                            .offset(x = 8.dp, y = (-8).dp)
+                    ) {
+                        Text(
+                            newMessages.toString()
+                        )
+                    }
+                }
+            }
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.notifications),
+                contentDescription = null,
+                modifier = Modifier.size(30.dp)
+            )
+        }
+
     }
 }
 
@@ -162,18 +189,21 @@ fun EventCard(
     eventLocation: String
 ) {
     OutlinedCard(
-        shape = RoundedCornerShape(12.dp),
+        shape = RoundedCornerShape(20.dp),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = 1.dp
+            defaultElevation = 2.dp
         ),
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            // User and menu icon
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                // Placeholder for user's avatar
+        Column(
+            modifier = Modifier
+                .padding(14.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Box(
                     modifier = Modifier
                         .size(36.dp)
@@ -189,14 +219,15 @@ fun EventCard(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = userName, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.weight(1f))
-                IconButton(onClick = { /* Menu action */ }) {
-                    Icon(Icons.Default.Search, contentDescription = "Menu")
+                IconButton(
+                    onClick = { /* Menu action */ }
+                ) {
+                    Icon(Icons.Default.FavoriteBorder, contentDescription = "Menu")
                 }
             }
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Event image placeholder
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -206,7 +237,6 @@ fun EventCard(
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // Event details
             Text(text = eventName, fontWeight = FontWeight.Bold, fontSize = 18.sp)
             Text(text = eventCategory, color = Color.Gray, fontSize = 14.sp)
 
@@ -226,20 +256,25 @@ fun EventCard(
                 Text(text = eventLocation, color = Color.Gray, fontSize = 14.sp)
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            OutlinedButton(
+                onClick = {
 
-            // Participate button
+                }
+            ) {
+                Text(text = "Отказаться")
+            }
+
             Button(
-                onClick = { /* Handle participation */ },
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier.fillMaxWidth()
+                onClick = {
+
+                },
+                modifier = Modifier
+                    .align(Alignment.End)
             ) {
                 Text(
                     text = "Участвовать",
-                    color = Color.White,
                     textAlign = TextAlign.Center,
-                    fontSize = 16.sp,
-                    modifier = Modifier.padding(vertical = 4.dp)
+                    fontSize = 14.sp,
                 )
             }
         }

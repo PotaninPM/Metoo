@@ -6,5 +6,6 @@ data class EventModel(
     val eventCategory: String,
     val eventDate: String,
     val eventTime: String,
-    val eventLocation: String
+    val eventLocation: String,
+    val regPeopleId: List<Long>
 )
