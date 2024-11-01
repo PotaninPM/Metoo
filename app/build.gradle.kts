@@ -50,6 +50,9 @@ android {
 }
 
 dependencies {
+    implementation("io.coil-kt.coil3:coil-compose:3.0.0-rc02")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.0.0-rc02")
+
     implementation(libs.maps.compose)
 
     implementation(libs.ktor.client.core)

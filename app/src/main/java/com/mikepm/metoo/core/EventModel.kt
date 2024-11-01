@@ -1,6 +1,9 @@
 package com.mikepm.metoo.core
 
 data class EventModel(
+    val images: List<String>,
+    val latitude: Double,
+    val longitude: Double,
     val creatorUserName: String,
     val eventTitle: String,
     val eventCategory: String,

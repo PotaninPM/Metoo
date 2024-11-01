@@ -63,6 +63,9 @@ fun EventsScreen() {
 fun EventsList() {
     val eventsList: ArrayList<EventModel> = arrayListOf(
         EventModel(
+            images = listOf("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbc.com%2Fukrainian%2Ffeatures-russian-42036902&psig=AOvVaw3zBTwtPtA67tUkiBMlCl-S&ust=1730493043324000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiM6Iu7uYkDFQAAAAAdAAAAABAE"),
+            latitude = 45.12,
+            longitude = 23.12,
             creatorUserName = "MikePotanin",
             eventTitle = "Футбол в трах трах",
             eventCategory = "Спорт",
@@ -72,6 +75,9 @@ fun EventsList() {
             regPeopleId = listOf(1, 2)
         ),
         EventModel(
+            images = listOf("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbc.com%2Fukrainian%2Ffeatures-russian-42036902&psig=AOvVaw3zBTwtPtA67tUkiBMlCl-S&ust=1730493043324000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiM6Iu7uYkDFQAAAAAdAAAAABAE"),
+            latitude = 45.18,
+            longitude = 23.12,
             creatorUserName = "MikePotanin",
             eventTitle = "Футбол в страино",
             eventCategory = "Спорт",
