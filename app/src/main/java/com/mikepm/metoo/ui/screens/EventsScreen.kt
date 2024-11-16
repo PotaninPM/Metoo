@@ -1,5 +1,6 @@
 package com.mikepm.metoo.ui.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -31,7 +32,9 @@ import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.SearchBar
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
@@ -50,43 +53,43 @@ fun EventsScreen() {
             .padding(top = 10.dp)
             .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Top))
     ) {
+        val eventsList: ArrayList<EventModel> = arrayListOf(
+            EventModel(
+                images = listOf("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbc.com%2Fukrainian%2Ffeatures-russian-42036902&psig=AOvVaw3zBTwtPtA67tUkiBMlCl-S&ust=1730493043324000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiM6Iu7uYkDFQAAAAAdAAAAABAE"),
+                latitude = 45.12,
+                longitude = 23.12,
+                creatorUserName = "MikePotanin",
+                eventTitle = "Футбол в т",
+                eventCategory = "Спорт",
+                eventDate = "14 December, 2021",
+                eventTime = "Tuesday, 4:00PM - 9:00PM",
+                eventLocation = "Gala Convention Center",
+                regPeopleId = listOf(1, 2)
+            ),
+            EventModel(
+                images = listOf("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbc.com%2Fukrainian%2Ffeatures-russian-42036902&psig=AOvVaw3zBTwtPtA67tUkiBMlCl-S&ust=1730493043324000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiM6Iu7uYkDFQAAAAAdAAAAABAE"),
+                latitude = 45.18,
+                longitude = 23.12,
+                creatorUserName = "MikePotanin",
+                eventTitle = "Футбол в страино",
+                eventCategory = "Спорт",
+                eventDate = "14 December, 2021",
+                eventTime = "Tuesday, 4:00PM - 9:00PM",
+                eventLocation = "Gala Convention Center",
+                regPeopleId = listOf(1, 2)
+            )
+        )
         //top bar
         TopBar()
         // Search bar with filter icon
         SearchEventBar()
         //Events List
-        EventsList()
+        EventsList(eventsList)
     }
 }
 
 @Composable
-fun EventsList() {
-    val eventsList: ArrayList<EventModel> = arrayListOf(
-        EventModel(
-            images = listOf("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbc.com%2Fukrainian%2Ffeatures-russian-42036902&psig=AOvVaw3zBTwtPtA67tUkiBMlCl-S&ust=1730493043324000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiM6Iu7uYkDFQAAAAAdAAAAABAE"),
-            latitude = 45.12,
-            longitude = 23.12,
-            creatorUserName = "MikePotanin",
-            eventTitle = "Футбол в трах трах",
-            eventCategory = "Спорт",
-            eventDate = "14 December, 2021",
-            eventTime = "Tuesday, 4:00PM - 9:00PM",
-            eventLocation = "Gala Convention Center",
-            regPeopleId = listOf(1, 2)
-        ),
-        EventModel(
-            images = listOf("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bbc.com%2Fukrainian%2Ffeatures-russian-42036902&psig=AOvVaw3zBTwtPtA67tUkiBMlCl-S&ust=1730493043324000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCOiM6Iu7uYkDFQAAAAAdAAAAABAE"),
-            latitude = 45.18,
-            longitude = 23.12,
-            creatorUserName = "MikePotanin",
-            eventTitle = "Футбол в страино",
-            eventCategory = "Спорт",
-            eventDate = "14 December, 2021",
-            eventTime = "Tuesday, 4:00PM - 9:00PM",
-            eventLocation = "Gala Convention Center",
-            regPeopleId = listOf(1, 2)
-        )
-    )
+fun EventsList(eventsList: ArrayList<EventModel>) {
 
     LazyColumn {
         items(eventsList) { event ->
@@ -105,15 +108,20 @@ fun EventsList() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchEventBar() {
+    var searchText by remember {
+        mutableStateOf("")
+    }
     SearchBar(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 5.dp),
-        query = "",
+        query = searchText,
         onQueryChange = {
+            searchText = it
+        },
+        onSearch = {
 
         },
-        onSearch = {},
         active = false,
         onActiveChange = {},
         trailingIcon = {
@@ -226,7 +234,9 @@ fun EventCard(
                 Text(text = userName, fontWeight = FontWeight.Bold)
                 Spacer(modifier = Modifier.weight(1f))
                 IconButton(
-                    onClick = { /* Menu action */ }
+                    onClick = {
+
+                    }
                 ) {
                     Icon(Icons.Default.FavoriteBorder, contentDescription = "Menu")
                 }
