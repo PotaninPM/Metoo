@@ -90,7 +90,6 @@ fun EventsScreen() {
 
 @Composable
 fun EventsList(eventsList: ArrayList<EventModel>) {
-
     LazyColumn {
         items(eventsList) { event ->
             EventCard(

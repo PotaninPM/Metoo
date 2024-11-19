@@ -2,6 +2,7 @@ package com.mikepm.metoo.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -42,18 +43,6 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import com.mikepm.metoo.R
 import com.mikepm.metoo.core.EventModel
 import kotlinx.coroutines.launch
-
-//data class EventModel(
-//    val latitude: Double,
-//    val longitude: Double,
-//    val creatorUserName: String,
-//    val eventTitle: String,
-//    val eventCategory: String,
-//    val eventDate: String,
-//    val eventTime: String,
-//    val eventLocation: String,
-//    val regPeopleId: List<Long>
-//)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -111,7 +100,11 @@ fun MapScreen() {
     }
 
     GoogleMap(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .clickable {
+
+            },
         cameraPositionState = cameraPositionState
     ) {
         events.forEach { event ->
@@ -144,7 +137,7 @@ fun EventBottomSheet(event: EventModel) {
         .clip(RoundedCornerShape(16.dp))
 
     var state by remember { mutableStateOf(0) }
-    val titles = listOf("Information", "Participants", "Comments")
+    val titles = listOf("Information", "Participants")
 
     Column {
 
@@ -161,6 +154,7 @@ fun EventBottomSheet(event: EventModel) {
                     selected = state == index,
                     onClick = { state = index },
                     text = {
+
                         Text(text = title, maxLines = 2, overflow = TextOverflow.Ellipsis)
                     }
                 )
