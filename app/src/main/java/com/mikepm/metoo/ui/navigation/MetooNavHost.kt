@@ -12,6 +12,7 @@ import com.mikepm.metoo.ui.screens.EventsScreen
 import com.mikepm.metoo.ui.screens.MainScreen
 import com.mikepm.metoo.ui.screens.MapScreen
 import com.mikepm.metoo.ui.screens.RatingScreen
+import com.mikepm.metoo.ui.screens.auth.AuthScreen
 import com.mikepm.metoo.ui.screens.auth.SignInScreen
 import com.mikepm.metoo.ui.screens.auth.SignUpScreen
 
@@ -22,7 +23,7 @@ fun MetooNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Screen.SignUpScreen.route,
+        startDestination = Screen.AuthScreen.route,
         modifier = modifier,
         enterTransition = { EnterTransition.None },
         exitTransition = { ExitTransition.None }
@@ -48,11 +49,11 @@ fun MetooNavHost(
         }
 
         composable(Screen.SignUpScreen.route) {
-            SignUpScreen()
+            SignUpScreen(navController)
         }
 
-        composable(Screen.SignInScreen.route) {
-            SignInScreen()
+        composable(Screen.AuthScreen.route) {
+            AuthScreen(navController)
         }
     }
 }
