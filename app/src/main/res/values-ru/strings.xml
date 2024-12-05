@@ -6,4 +6,8 @@
     <string name="rating_bottom">Рейтинг</string>
     <string name="profile">Профиль</string>
     <string name="events_bottom">События</string>
+    <string name="name">Имя</string>
+    <string name="email">Почта</string>
+    <string name="password">Пароль</string>
+    <string name="sign_up">Зарегистрироваться</string>
 </resources>

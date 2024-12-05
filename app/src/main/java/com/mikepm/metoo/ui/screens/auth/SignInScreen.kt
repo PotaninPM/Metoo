@@ -40,6 +40,11 @@ import com.mikepm.metoo.R
 
 @Composable
 fun SignInScreen(navController: NavController) {
+
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var isPasswordVisible by remember { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -66,7 +71,6 @@ fun SignInScreen(navController: NavController) {
                 color = MaterialTheme.colorScheme.onBackground
             )
 
-            var email by remember { mutableStateOf("") }
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -78,8 +82,6 @@ fun SignInScreen(navController: NavController) {
                 )
             )
 
-            var password by remember { mutableStateOf("") }
-            var isPasswordVisible by remember { mutableStateOf(false) }
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },

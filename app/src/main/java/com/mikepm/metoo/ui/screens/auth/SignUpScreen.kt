@@ -25,6 +25,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -37,6 +38,11 @@ import com.mikepm.metoo.R
 fun SignUpScreen(
     navController: NavController
 ) {
+    var name by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var isPasswordVisible by remember { mutableStateOf(false) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -45,7 +51,7 @@ fun SignUpScreen(
     ) {
         Column(
             modifier = Modifier
-                .align(Alignment.Center)
+                .align(Alignment.TopStart)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -63,11 +69,10 @@ fun SignUpScreen(
                 color = MaterialTheme.colorScheme.onBackground
             )
 
-            var name by remember { mutableStateOf("") }
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
-                label = { Text("Name") },
+                label = { Text(stringResource(R.string.name)) },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Text,
@@ -75,11 +80,10 @@ fun SignUpScreen(
                 )
             )
 
-            var email by remember { mutableStateOf("") }
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text("Email") },
+                label = { Text(stringResource(R.string.email)) },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Email,
@@ -87,12 +91,10 @@ fun SignUpScreen(
                 )
             )
 
-            var password by remember { mutableStateOf("") }
-            var isPasswordVisible by remember { mutableStateOf(false) }
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
-                label = { Text("Password") },
+                label = { Text(stringResource(R.string.password)) },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password,
@@ -105,7 +107,7 @@ fun SignUpScreen(
                             painter = painterResource(
                                 id = if (isPasswordVisible) R.drawable.trophy_filled else R.drawable.trophy_outlined
                             ),
-                            contentDescription = "Toggle Password Visibility"
+                            contentDescription = null
                         )
                     }
                 }
@@ -115,7 +117,7 @@ fun SignUpScreen(
                 onClick = {  },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(text = "Sign Up")
+                Text(text = stringResource(R.string.sign_up))
             }
         }
     }
