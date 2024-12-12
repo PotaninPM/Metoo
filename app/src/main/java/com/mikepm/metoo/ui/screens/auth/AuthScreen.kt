@@ -14,7 +14,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
+import com.mikepm.metoo.R
 import kotlinx.coroutines.launch
 
 @Composable
@@ -40,7 +42,10 @@ fun AuthScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                listOf("Sign In", "Sign Up").forEachIndexed { index, title ->
+                listOf(
+                    stringResource(R.string.sign_in),
+                    stringResource(R.string.sign_up)
+                ).forEachIndexed { index, title ->
                     Tab(
                         selected = pagerState.currentPage == index,
                         onClick = {

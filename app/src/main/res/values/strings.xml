@@ -9,4 +9,8 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="friends_amount">Friends</string>
+    <string name="rating">Rating</string>
+    <string name="events_amount">Events</string>
 </resources>

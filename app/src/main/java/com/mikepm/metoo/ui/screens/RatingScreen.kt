@@ -38,14 +38,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.mikepm.metoo.R
+import com.mikepm.metoo.domain.model.LeaderboardItem
 import java.lang.reflect.Modifier
-
-data class LeaderboardItem(
-    val position: Int,
-    val name: String,
-    val points: Int,
-    val imageUrl: Int
-)
 
 @Composable
 fun RatingScreen() {
@@ -59,17 +53,15 @@ fun RatingScreen() {
         LeaderboardItem(7, "Marsha Fisher", 360, R.drawable.moscow),
         LeaderboardItem(8, "Marsha Fisher", 360, R.drawable.moscow),
         LeaderboardItem(9, "Marsha Fisher", 360, R.drawable.moscow),
-        LeaderboardItem(10, "Marsha Fisher", 360, R.drawable.moscow),
-        LeaderboardItem(11, "Marsha Fisher", 360, R.drawable.moscow),
-        LeaderboardItem(12, "Marsha Fisher", 360, R.drawable.moscow),
-        LeaderboardItem(13, "Marsha Fisher", 360, R.drawable.moscow),
+        LeaderboardItem(10, "Marsha Fisher", 360, R.drawable.moscow)
     )
+
     val userPosition = LeaderboardItem(101, "Вы", 30, R.drawable.moscow)
 
     Column(
         modifier = androidx.compose.ui.Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.surfaceContainerLowest) // Background color of the screen
+            .background(MaterialTheme.colorScheme.surfaceContainerLowest)
             .padding(horizontal = 16.dp, vertical = 10.dp)
             .windowInsetsPadding(WindowInsets.systemBars.only(WindowInsetsSides.Top))
     ) {
@@ -179,7 +171,6 @@ fun LeaderboardListItem(item: LeaderboardItem, isUser: Boolean = false) {
     Row(
         modifier = androidx.compose.ui.Modifier
             .fillMaxWidth()
-            .shadow(if(isUser) 0.dp else 18.dp)
             .padding(vertical = 4.dp)
             .background(
                 if (isUser) Color(0xFF3A80F7) else MaterialTheme.colorScheme.surfaceContainerLow,

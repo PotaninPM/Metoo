@@ -42,6 +42,8 @@ import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.mikepm.metoo.R
 import com.mikepm.metoo.core.EventModel
+import com.mikepm.metoo.ui.screens.eventInfo.EventInformation
+import com.mikepm.metoo.ui.screens.eventInfo.EventParticipants
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -154,7 +156,6 @@ fun EventBottomSheet(event: EventModel) {
                     selected = state == index,
                     onClick = { state = index },
                     text = {
-
                         Text(text = title, maxLines = 2, overflow = TextOverflow.Ellipsis)
                     }
                 )
@@ -173,14 +174,4 @@ fun EventBottomSheet(event: EventModel) {
 @Composable
 fun EventComments() {
     Text("1")
-}
-
-@Composable
-fun EventParticipants() {
-    Text("2")
-}
-
-@Composable
-fun EventInformation(event: EventModel) {
-    Text("3")
 }

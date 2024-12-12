@@ -112,9 +112,10 @@ fun SignUpScreen(
                     }
                 }
             )
-
             Button(
-                onClick = {  },
+                onClick = {
+                    navController.navigate("events_screen")
+                },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = stringResource(R.string.sign_up))

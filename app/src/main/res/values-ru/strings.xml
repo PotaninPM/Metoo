@@ -10,4 +10,8 @@
     <string name="email">Почта</string>
     <string name="password">Пароль</string>
     <string name="sign_up">Зарегистрироваться</string>
+    <string name="sign_in">Войти</string>
+    <string name="friends_amount">Друзья</string>
+    <string name="rating">Рейтинг</string>
+    <string name="events_amount">События</string>
 </resources>
